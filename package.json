@@ -20,10 +20,15 @@
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.5.0",
+    "lodash": "^4.14.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-grid-layout": "^0.12.7",
+    "react-packery-component": "^1.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
   }
 }

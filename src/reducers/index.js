@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import newsList from './reducer_news_list'
+import newsDetail from './reducer_news_detail'
 
-const rootReducer = combineReducers({
-  state: (state = {}) => state
-});
-
-export default rootReducer;
+export default combineReducers({
+    newsList,
+    newsDetail
+})
