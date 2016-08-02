@@ -1,6 +1,7 @@
 /**
  * Created by Bogdan on 8/2/2016.
  */
+import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -11,59 +12,74 @@ var newElement;
 function initPackery() {
     grid = document.querySelector('.grid');
     pckry = new Packery( grid, {
-    gutter:10,
+    gutter:5,
     itemSelector: '.grid-item'
     });
     console.log('im rendered',grid,pckry);
 }
-    const grids = document.querySelector('.grid');
 
 class NewsList extends Component {
     componentDidUpdate(){
-            console.log(grids);
         initPackery();
-        // pckry.prepended( items );
+        const {updated} = this.props.newsList;
+        if(!(Object.keys(updated).length === 0 && updated.constructor === Object)) {
+            this.prependPeckery(updated);
+
+        }
+
     }
     componentWillMount() {
         const {getNews} = this.props.newsActions;
         const {updateNews} = this.props.newsActions;
         getNews()
         updateNews();
-
     }
+
 
     prependPeckery (itemDetail){
+        console.log(newElement);
         var fragment = document.createDocumentFragment();
         var item = document.createElement('div');
+        ReactDOM.render(newElement,item);
         item.className = 'grid-item';
-        var newDivContent = document.createElement('div');
-        newDivContent.innerHTML = itemDetail.native_title;
-        item.appendChild(newDivContent)
+        item['key'] = itemDetail.id;
+
         fragment.appendChild(item);
         grid.insertBefore(fragment, grid.firstChild );
-        pckry.prepended(item)
+        pckry.prepended( item );
     }
-
+    clickHadler(){
+        console.log('gyi')
+    }
     render() {
+        const thisRef =this;
         const {news, fetching , updated} = this.props.newsList;
         console.log(updated);
+        var upElement = function (element,refToClass) {
+            return (
+                <div key={element.id} onClick={refToClass.clickHadler} className={'wrapHandle'}>
+                    <p>{element.native_title}</p>
+                </div>
+            );
 
+        }
+        newElement = upElement(updated,thisRef)
+        console.log('render it !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         return (
             <div className ="grid">
                 {fetching ?
                 <p>Загрузка...</p>
                 :
-                news.map((data, index) =>
-                <div key={index} className='grid-item'>
+                news.map((data) =>
+                <div key={data.id} onClick ={this.clickHadler}
+                     className={"grid-item " + (data.id % 10 > 5 ? 'grid-item--width2' : data.id % 10 < 2 ? 'grid-item--height2' : '')}>
+                    <div className="wrapHandle">
                     <p><img src={data.src}/></p>
                     <p>{data.native_title} ❤</p>
+                  </div>
                 </div>
                 )}
-                {Object.keys(updated).length === 0 && updated.constructor === Object ? null :
-                    setTimeout(this.prependPeckery(this.props.newsList.updated),300)
-                }
             </div>
-
         )
     }
 
