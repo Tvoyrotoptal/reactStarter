@@ -19,7 +19,7 @@ export default function newsList(state = initialState, action) {
       case GET_NEWS_SUCCES:
            return {...state,news:action.payload.reverse(),fetching:false}
       case UPDATE_NEWS:
-           return {...state,news:Object.keys(updated).length === 0 && updated.constructor === Object ? news.slice(0,news.length-1) : news.slice(0,news.length-1).concat(updated),updated:action.payload}
+           return {...state,news:Object.keys(updated).length === 0 && updated.constructor === Object ? news.slice(0,news.length-1) : [].concat(updated).concat(news.slice(0,news.length-1)),updated:action.payload}
       default:
            return state;
    }
