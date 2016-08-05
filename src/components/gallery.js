@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 var packeryOptions = {
     transitionDuration: 0,
-    gutter: 10
+    gutter: 0
 
 };
 var packery;
@@ -20,10 +20,19 @@ var Gallery = React.createClass({
                      className={"grid-item " + (element.id % 10 > 5 ? 'grid-item--width2' : element.id % 10 < 2 ? 'grid-item--height2' : '')}
                      onClick={() => refToClass.props.selectNews(element)}>
                     <Link to={{ pathname : `/news/${element.id}`,
-                    state: { modal: true, returnTo: '/' }}}
-                        // onClick =  {() => refToClass.props.selectNews(element)}
-                          className={"grid-item " + (element.id % 10 > 5 ? 'grid-item--width2' : element.id % 10 < 2 ? 'grid-item--height2' : '')}>
-                        <p>{element.native_title}</p>
+                    state: { modal: true, returnTo: '/' }}}>
+                        <div className={`card news-ctg${element.category}`}>
+                            <div className="card-title">
+                                <h2>{element.native_title}</h2>
+                                <span>{element.date}</span>
+                            </div>
+                            <div className="card-image"></div>
+                            <div className="card-content">
+                                <p>{element.text}</p></div>
+                            <div className="card-link-custom">
+                                <p>ЧИТАТЬ</p><img
+                                src={`/static/images/icon${element.source}.png`}/></div>
+                        </div>
                     </Link>
                 </div>
             );
@@ -35,12 +44,22 @@ var Gallery = React.createClass({
                     <div key={element.id} onClick={() => thisRef.props.selectNews(element)}
                          className={"grid-item " + (element.id % 10 > 5 ? 'grid-item--width2' : element.id % 10 < 2 ? 'grid-item--height2' : '')}>
                         <Link to={{ pathname : `/news/${element.id}`,
-                            state: { modal: true, returnTo: '/' }}}                         >
-                            <p>{element.native_title}</p>
+                            state: { modal: true, returnTo: '/' }}}>
+                            <div className={`card news-ctg${element.category}`}>
+                                <div className="card-title">
+                                    <h2>{element.native_title}</h2>
+                                    <span>{element.date}</span>
+                                </div>
+                                <div className="card-image"></div>
+                                <div className="card-content">
+                                    <p>{element.text}</p></div>
+                                <div className="card-link-custom">
+                                    <p>ЧИТАТЬ</p><img
+                                    src={`/static/images/icon${element.source}.png`}/></div>
+                            </div>
                         </Link>
                     </div>
                 );
-
             };
         }
         return (

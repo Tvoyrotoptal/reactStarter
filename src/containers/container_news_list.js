@@ -31,7 +31,7 @@ class NewsList extends Component {
         const {news, fetching, updated } = this.props.newsList;
         const { newsDetail, fetchingDetails } = this.props.newsActive;
         return (
-            <div className="grid">
+            <div className="content">
                 {fetching ?
                     <p>Загрузка...</p>
                     :

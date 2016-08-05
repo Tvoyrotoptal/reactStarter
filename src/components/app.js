@@ -33,7 +33,7 @@ class App extends Component {
       this.previousChildren
     )
     return (
-      <div>
+
         <div>
           {isModal ?
             this.previousChildren :
@@ -46,7 +46,7 @@ class App extends Component {
               
           )}
         </div>
-      </div>
+
     )
   }
 }
