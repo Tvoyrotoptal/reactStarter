@@ -9,3 +9,4 @@ export default function newsDetail(state = null,action) {
     }
     return state;
 }
+
