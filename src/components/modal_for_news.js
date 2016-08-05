@@ -27,6 +27,7 @@ export const ModalWindow = React.createClass({
     },
     componentDidMount(){
         this.open()
+        console.log(this.props.fetching);
     },
 
     render() {
@@ -34,13 +35,18 @@ export const ModalWindow = React.createClass({
             <div>
                 <Modal show={this.state.showModal} onExit={this.Exit}
                        onHide={this.close}>
+
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        {this.props.newsContent.native_title}
                     </Modal.Header>
                     <Modal.Body>
-                        { this.props.newsContent.id}
-                        {this.props.newsContent.native_title}
+                       {this.props.fetching?<p>LOADING</p>:
+
+                         this.props.newsContent.native_text
+                             }
                     </Modal.Body>
+
+
                 </Modal>
             </div>
         );

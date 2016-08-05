@@ -9,9 +9,8 @@ import * as newsActions from '../actions/newsListActions'
 import * as newsDetails from '../actions/newsDetailAction'
 import Gallery from '../components/gallery'
 import {Link} from 'react-router'
-import {ModalWindow} from '../components/singleNews';
+import {ModalWindow} from '../components/modal_for_news';
 
-import Modal from  '../components/app'
 
 
 class NewsList extends Component {
@@ -19,32 +18,30 @@ class NewsList extends Component {
     componentWillMount() {
         const {getNews} = this.props.newsActions;
         const {updateNews} = this.props.newsActions;
+        const {getSpecificNews} = this.props.newsDetailActions;
         getNews();
         updateNews();
-    }
-
-    componentDidUpdate() {
-        if (this.props.newsActive !== undefined && this.props.newsActive.length != 0) {
-            console.log("!!", this.props.newsActive)
+        if (this.props.selectedID){
+            console.log("need to fetch",this.props.selectedID);
+            getSpecificNews(this.props.selectedID);
         }
     }
-
-
+    
     render() {
         const {news, fetching, updated } = this.props.newsList;
-
+        const { newsDetail, fetchingDetails } = this.props.newsActive;
         return (
             <div className="grid">
                 {fetching ?
                     <p>Загрузка...</p>
                     :
                     <Gallery elements={news} updated={updated} location={this.props.location}
-                             selectNews={this.props.newsDetails.selectNews }/>
+                             selectNews={this.props.newsDetailActions.selectNews }/>
                     
                 }
                 {
-                    (this.props.newsActive !== undefined && this.props.newsActive.length != 0) ?
-                                    <ModalWindow newsContent={this.props.newsActive[0]} />:null
+                    (this.props.selectedID) ?
+                        <ModalWindow fetching={fetchingDetails} newsContent={newsDetail} />:null
 
                 }
             </div>
@@ -53,19 +50,17 @@ class NewsList extends Component {
 
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         newsList: state.newsList,
-        newsActive: state.newsList.news.filter(function (elem) {
-            return elem['id'] == ownProps['selectedID']
-        })
+        newsActive: state.newsDetail
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         newsActions: bindActionCreators(newsActions, dispatch),
-        newsDetails: bindActionCreators(newsDetails, dispatch)
+        newsDetailActions: bindActionCreators(newsDetails, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewsList)

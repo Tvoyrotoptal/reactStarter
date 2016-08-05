@@ -4,33 +4,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import {ModalWindow} from './singleNews';
+import {ModalWindow} from './modal_for_news';
 import {bindActionCreators} from 'redux'
 import { withRouter } from 'react-router';
 import * as newsActions from '../actions/newsListActions'
 
 
-// export const Modal = React.createClass({
-//   styles: {
-//     position: 'fixed',
-//     top: '20%',
-//     right: '20%',
-//     bottom: '20%',
-//     left: '20%',
-//     padding: 20,
-//     boxShadow: '0px 0px 150px 130px rgba(0, 0, 0, 0.5)',
-//     overflow: 'auto',
-//     background: '#fff'
-//   },
-//   render() {
-//     return (
-//       <div style={this.styles}>
-//          <p><Link to={"/"}>Back</Link></p>
-//           {this.props.children}
-//       </div>
-//     )
-//   }
-// })
 class App extends Component {
     componentWillReceiveProps(nextProps) {
     // if we changed routes...
@@ -53,11 +32,8 @@ class App extends Component {
       location.state.modal &&
       this.previousChildren
     )
-      console.log(isModal)
     return (
       <div>
-        <h1>Pinterest Style Routes</h1>
-
         <div>
           {isModal ?
             this.previousChildren :

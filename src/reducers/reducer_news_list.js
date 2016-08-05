@@ -18,7 +18,7 @@ export default function newsList(state = initialState, action) {
       case GET_NEWS_REQUEST:
            return {...state,fetching:true}
       case GET_NEWS_SUCCES:
-           return {...state, news:(firstInit )?action.payload : action.payload.reverse(),fetching:false,updated:{},firstInit:true}
+           return {...state, news:(firstInit)?action.payload : action.payload.reverse(),fetching:false,updated:{},firstInit:true}
       case INIT_DONE:
            return {...state,firstInit:true}
       case UPDATE_NEWS:

@@ -2,7 +2,7 @@
  * Created by Bogdan on 8/2/2016.
  */
 
-import{GET_NEWS_REQUEST,GET_NEWS_SUCCES,UPDATE_NEWS,ROOT_URL } from '../constants/newsList'
+import{GET_NEWS_REQUEST,GET_NEWS_SUCCES,UPDATE_NEWS,INIT_DONE,ROOT_URL } from '../constants/newsList'
 const DoneNews =[
       {
          "id": 1294,
@@ -92,7 +92,7 @@ const DoneNews =[
          "source": 1,
          "category": 2,
          "text": "BABBABABABABABBBABABBABABBABabодібно. Якщо ви збираєтесь використовувати Lorem Ipsum, ви маєте упевнитись в тому, що всередині тексту не приховано нічого, що могло б викликати у читача конфуз. Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом повторення наперед заданих послідовностей Lorem Ipsum. Принципова відмінність цього генератора робить його першим справжнім генератором Lorem Ipsum. Він використовує словник з більш як 200 слів латини та цілий набір моделей речень - це дозволяє генерувати Lorem Ipsum, який виглядає осмислено. Таким чином, згенерований Lorem Ipsum не міститиме повторів, жартів, нехарактерних для латини слів і т.ін.",
-         "native_title": "6",
+         "native_title": "8",
          "native_img": "",
          "native_text": "передает Цензор.НЕТ.По его словам, все они будут распределены между тремя действующими пунктами пропуска - где они и будут осуществлять свою деятельность в ближайшие дни. По словам Слободяна,  будут вмешиваться в работу контрольных служб.Читайте на : Министр обороны России Шойгу проверяет боевую подготовку оккупантов в Крымункция ",
          "native_url": "http://sport.lb.ua/football/2016/03/22/330913_fifa_nachala_rassledovat_vibor.html",
@@ -137,6 +137,14 @@ export function getNews() {
     }, 1000)        
     }
 }
+export function initDone() {
+
+    return (dispatch)=> {
+        dispatch({
+            type: INIT_DONE
+        })
+    }
+}
 export function updateNews() {
     return(dispatch)=> {
         dispatch({
@@ -154,11 +162,6 @@ export function updateNews() {
                 payload: doubleUpdt
             })
         }, 4400)
-        // setTimeout(() => {
-        //     dispatch({
-        //         type: UPDATE_NEWS,
-        //         payload: updateNewsList
-        //     })
-        // }, 4400)
+
     }
 }
