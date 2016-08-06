@@ -5,13 +5,13 @@ import React from 'react';
 import { Component } from 'react';
 
 import NewsList from '../containers/container_news_list';
-import SimpleForm from '../containers/container_filter_news';
+import ContactForm from '../containers/container_filter_news';
 
 export default class App extends Component {
   render() {
     return (
       <div className="wrap">
-        <SimpleForm />
+        <ContactForm />
         <NewsList />
       </div>
     );
