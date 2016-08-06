@@ -333,6 +333,7 @@ label {
 }
 
 .grid-item {
+
     width: 25%;
     padding: 7.5px 8px;
 }
@@ -428,6 +429,14 @@ label {
 
 .grid-item.grid-item--width2 > a > div {
     float: left;
+}
+
+.grid-item{
+        -webkit-transition: all 0.4s;
+	   -moz-transition: all 0.4s;
+		-ms-transition: all 0.4s;
+		 -o-transition: all 0.4s;
+			transition: all 0.4s;
 }
 
 [type="checkbox"] + label:before {
@@ -569,32 +578,27 @@ label {
     margin: 0 0 5px 20px;
     float: left;
 }
-/* For mobiles if do not wont that durin modal is open page is sliding you must implement this rule othervise you shoul use overflow:visible
-/*body.modal-open {*/
-    /*overflow: hidden;*/
-    /*position: fixed;*/
-    /*width: 100%;*/
-/*}*/
+
 body.modal-open {
     overflow: visible;
 }
 .modal-backdrop.in {
     opacity: .85;}
-/*body {*/
-    /*-webkit-transition: all 0.3s;*/
-	   /*-moz-transition: all 0.3s;*/
-		/*-ms-transition: all 0.3s;*/
-		 /*-o-transition: all 0.3s;*/
-			/*transition: all 0.3s;*/
-/*}*/
-/*body {*/
-    /*width: calc(100vw);*/
-/*}*/
-/*.modal-open[style="padding-right: 17px;"] .navbar-fixed-top,*/
-/*.modal-open[style="padding-right: 17px;"] .navbar-fixed-bottom {*/
-/*padding-right: 17px;*/
-/*}*/
+
 .container-float{
     width: 98vw;
+}
+.no-display{
+    opacity:0;
+    visibility: hidden;
+     -moz-transition: opacity 400ms ease-out, visibility 0s ease-out 400ms;
+  -o-transition: opacity 400ms ease-out, visibility 0s ease-out 400ms;
+  -webkit-transition: opacity 400ms ease-out, visibility 0s ease-out;
+  -webkit-transition-delay: 0s, 400ms;
+  transition: opacity 400ms ease-out, visibility 0s ease-out 400ms;
+}
+.no-display--vis{
+        opacity: 1;
+    visibility: visible;
 }
 /*#header-news{width: 100%;position: relative;}*/

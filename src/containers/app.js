@@ -1,84 +1,67 @@
-// import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-//
-// class App extends Component {
-//   render() {
-//     const { name, surname, age } = this.props.user
-//     return <div>
-//       <p>Привет из App, {name} {surname}!</p>
-//       <p>Тебе уже {age} ?</p>
-//     </div>
-//   }
-// }
-//
-// function mapStateToProps (state) {
-//   return {
-//     user: state
-//   }
-// }
-//
-// export default connect(mapStateToProps)(App)
-//
+/**
+ * Created by Bogdan on 8/4/2016.
+ */
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import {ModalWindow} from './../components/modal_for_news';
+import {bindActionCreators} from 'redux'
+import { withRouter } from 'react-router';
+import * as newsActions from '../actions/newsListActions'
 
 
+class App extends Component {
+    componentWillReceiveProps(nextProps) {
+    // if we changed routes...
+    if ((
+      nextProps.location.key !== this.props.location.key &&
+      nextProps.location.state &&
+      nextProps.location.state.modal
+    )) {
+      // save the old children (just like animation)
+      this.previousChildren = this.props.children
+    }
+  }
 
+  render() {
+    let { location } = this.props
 
+    let isModal = (
+      location.state &&
+      location.state.modal &&
+      this.previousChildren
+    )
+    return (
 
-// import React, { Component } from 'react';
-// import Gallery from './../components/gallery'
-//
-// var customElements=[{
-//     src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//     id:1
-// },
-//     {
-//     src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//         id:2
-// },
-//     {
-//     src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//
-//         id:3
-// },
-//     {
-//     src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//          id:4
-// },
-//     {
-//     src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//
-//          id:5
-// }
-// ]
-// function initPackery() {
-//     var grid = document.querySelector('.my-gallery-class');
-//     var pckry = new Packery( grid, {
-//     itemSelector: '.image-element-class'
-//     });
-//     console.log('im rendered',grid,pckry);
-// }
-// setTimeout(concatArray,1000);
-// function concatArray(){
-//     customElements.push({src :'https://facebook.github.io/react/img/logo.svg',
-//     text:'onene',
-//          id:6})
-//     console.log(customElements,"zapushil")
-// }
-// export default class App extends Component {
-//         componentDidMount(){
-//     initPackery();
-//     }
-//   render() {
-//     return (
-//       <div>Super done it well
-//
-//         <Gallery elements = {customElements} />
-//       </div>
-//     );
-//   }
-// }
+        <div>
+          {isModal ?
+            this.previousChildren :
+              this.props.children
+          }
+
+          {isModal && (
+            <ModalWindow newsContent={this.props.newsDetail}>
+            </ModalWindow>
+              
+          )}
+        </div>
+
+    )
+  }
+}
+
+function mapStateToProps(state) {
+    return {
+        newsList: state.newsList,
+        newsDetail: state.newsDetail
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        newsActions: bindActionCreators(newsActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App)
+

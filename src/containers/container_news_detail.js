@@ -4,7 +4,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import NewsList from './container_news_list';
-import App from '../components/app'
 
 class NewsDetail extends Component {
 

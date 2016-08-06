@@ -1,6 +1,7 @@
 var React = require('react');
 var Packery = require('react-packery-component')(React);
 import {Link} from 'react-router'
+import Expire from './expire'
 // import App from './app'
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -41,8 +42,9 @@ var Gallery = React.createClass({
         if (!(Object.keys(this.props.updated).length === 0 && this.props.updated.constructor === Object)) {
             var uElements = (element, thisRef) => {
                 return (
-                    <div key={element.id} onClick={() => thisRef.props.selectNews(element)}
-                         className={"grid-item " + (element.id % 10 > 5 ? 'grid-item--width2' : element.id % 10 < 2 ? 'grid-item--height2' : '')}>
+
+                    <Expire delay={5} element={element.id}
+                            key={element.id} onClick={() => thisRef.props.selectNews(element)}>
                         <Link to={{ pathname : `/news/${element.id}`,
                             state: { modal: true, returnTo: '/' }}}>
                             <div className={`card news-ctg${element.category}`}>
@@ -58,7 +60,7 @@ var Gallery = React.createClass({
                                     src={`/static/images/icon${element.source}.png`}/></div>
                             </div>
                         </Link>
-                    </div>
+                    </Expire>
                 );
             };
         }
