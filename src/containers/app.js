@@ -6,8 +6,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {ModalWindow} from './../components/modal_for_news';
 import {bindActionCreators} from 'redux'
-import { withRouter } from 'react-router';
-import * as newsActions from '../actions/newsListActions'
 
 
 class App extends Component {
@@ -52,16 +50,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        newsList: state.newsList,
         newsDetail: state.newsDetail
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        newsActions: bindActionCreators(newsActions, dispatch),
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)
 

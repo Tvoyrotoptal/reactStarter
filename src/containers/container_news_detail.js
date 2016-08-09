@@ -3,23 +3,16 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import NewsList from './container_news_list';
+import App from '../components/app_compose'
 
-class NewsDetail extends Component {
+export default class NewsDetail extends Component {
 
     render() {
         return (
-         <NewsList selectedID={this.props.params.id}/>
+         <App passSelectedID={this.props.params.id}/>
         )
     }
 }
 
 
-function mapStateToProps(state) {
-    return {
-        news: state.newsDetail,
-        newsList: state.newsList
-    };
-}
 
-export default connect(mapStateToProps)(NewsDetail);

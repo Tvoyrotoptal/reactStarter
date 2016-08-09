@@ -16,7 +16,7 @@ export default function newsList(state = initialState, action) {
 
    switch (action.type){
       case GET_NEWS_REQUEST:
-           return {...state,fetching:true}
+           return {...state,fetching:news.length===0}
       case GET_NEWS_SUCCES:
            return {...state, news:(firstInit)?action.payload : action.payload.reverse(),fetching:false,updated:{},firstInit:true}
       case GET_FILTERED_NEWS_SUCCES:

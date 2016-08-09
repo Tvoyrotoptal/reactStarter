@@ -34,7 +34,6 @@ var Expire = React.createClass({
     clearTimeout(this._timer);
   },
   render: function() {
-      console.log(this.props.element);
     return this.state.visible ? <div className={"grid-item no-display " + (this.props.element % 10 > 5 ?
             'grid-item--width2' : this.props.element % 10 < 2
             ? 'grid-item--height2' : '')}>

@@ -16,7 +16,6 @@ const SpecificNews ={
 export function selectNews(news) {
   // selectBook is an ActionCreator, it needs to return an action,
   // an object with a type property.
-  console.log(news,"ITS WARKING!!!!!!!!!!!!!!!!!!!!!!!!!")
   return {
     type: NEWS_SELECTED,
     payload: news

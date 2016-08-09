@@ -15,13 +15,14 @@ import {ModalWindow} from '../components/modal_for_news';
 class NewsList extends Component {
 
     componentWillMount() {
-        const {getNews} = this.props.newsActions;
-        const {updateNews} = this.props.newsActions;
+        const {getNews, updateNews} = this.props.newsActions;
+        const {newsDetail} =this.props.newsActive;
         const {getSpecificNews} = this.props.newsDetailActions;
-        getNews();
-        updateNews();
+        if (Object.keys(newsDetail).length === 0 && newsDetail.constructor === Object) {
+            getNews();
+            updateNews();
+        }
         if (this.props.selectedID) {
-            console.log("need to fetch", this.props.selectedID);
             getSpecificNews(this.props.selectedID);
         }
     }
@@ -37,12 +38,10 @@ class NewsList extends Component {
                         :
                         <Gallery elements={news} updated={updated} location={this.props.location}
                                  selectNews={this.props.newsDetailActions.selectNews }/>
-
                     }
                     {
                         (this.props.selectedID) ?
                             <ModalWindow fetching={fetchingDetails} newsContent={newsDetail}/> : null
-
                     }
                 </div>
             </div>

@@ -8,14 +8,12 @@ import NewsList from '../containers/container_news_list';
 import ContactForm from '../containers/container_filter_news';
 
 export default class App extends Component {
-    componentDidMount() {
-        console.log("HYI HYI", this.props)
-    }
+
     render() {
     return (
       <div className="wrap">
         <ContactForm />
-        <NewsList />
+        <NewsList selectedID={this.props.passSelectedID} />
       </div>
     );
   }

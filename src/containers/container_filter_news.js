@@ -85,7 +85,7 @@ class NewsFilter extends Component {
     checkFilters(props);
         //post tyt
     console.log(filters);
-    getFilteredNews()    
+    // getFilteredNews()
 
     }
 
