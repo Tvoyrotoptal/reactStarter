@@ -27,7 +27,6 @@ export const ModalWindow = React.createClass({
     },
     componentDidMount(){
         this.open()
-        console.log(this.props.fetching);
     },
 
     render() {

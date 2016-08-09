@@ -40,13 +40,13 @@ var Gallery = React.createClass({
 
         });
         if (!(Object.keys(this.props.updated).length === 0 && this.props.updated.constructor === Object)) {
-            var uElements = (element, thisRef) => {
+            var uElements = (element) => {
                 return (
-
                     <Expire delay={5} element={element.id}
-                            key={element.id} onClick={() => thisRef.props.selectNews(element)}>
+                            key={element.id} >
                         <Link to={{ pathname : `/news/${element.id}`,
-                            state: { modal: true, returnTo: '/' }}}>
+                            state: { modal: true, returnTo: '/' }}}
+                            onClick={() => refToClass.props.selectNews(element)} >
                             <div className={`card news-ctg${element.category}`}>
                                 <div className="card-title">
                                     <h2>{element.native_title}</h2>
@@ -73,7 +73,7 @@ var Gallery = React.createClass({
                 disableImagesLoaded={false} // default false
             >
                 {!(Object.keys(this.props.updated).length === 0 && this.props.updated.constructor === Object) ?
-                    uElements(this.props.updated, refToClass) : null
+                    uElements(this.props.updated) : null
                 }
                 {childElements}
 

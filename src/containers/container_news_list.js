@@ -12,7 +12,6 @@ import {Link} from 'react-router'
 import {ModalWindow} from '../components/modal_for_news';
 
 
-
 class NewsList extends Component {
 
     componentWillMount() {
@@ -21,29 +20,31 @@ class NewsList extends Component {
         const {getSpecificNews} = this.props.newsDetailActions;
         getNews();
         updateNews();
-        if (this.props.selectedID){
-            console.log("need to fetch",this.props.selectedID);
+        if (this.props.selectedID) {
+            console.log("need to fetch", this.props.selectedID);
             getSpecificNews(this.props.selectedID);
         }
     }
-    
-    render() {
-        const {news, fetching, updated } = this.props.newsList;
-        const { newsDetail, fetchingDetails } = this.props.newsActive;
-        return (
-            <div className="content">
-                {fetching ?
-                    <p>Загрузка...</p>
-                    :
-                    <Gallery elements={news} updated={updated} location={this.props.location}
-                             selectNews={this.props.newsDetailActions.selectNews }/>
-                    
-                }
-                {
-                    (this.props.selectedID) ?
-                        <ModalWindow fetching={fetchingDetails} newsContent={newsDetail} />:null
 
-                }
+    render() {
+        const {news, fetching, updated} = this.props.newsList;
+        const {newsDetail, fetchingDetails} = this.props.newsActive;
+        return (
+            <div id="output">
+                <div className="content">
+                    {fetching ?
+                        <p>Загрузка...</p>
+                        :
+                        <Gallery elements={news} updated={updated} location={this.props.location}
+                                 selectNews={this.props.newsDetailActions.selectNews }/>
+
+                    }
+                    {
+                        (this.props.selectedID) ?
+                            <ModalWindow fetching={fetchingDetails} newsContent={newsDetail}/> : null
+
+                    }
+                </div>
             </div>
         )
     }

@@ -8,7 +8,10 @@ import NewsList from '../containers/container_news_list';
 import ContactForm from '../containers/container_filter_news';
 
 export default class App extends Component {
-  render() {
+    componentDidMount() {
+        console.log("HYI HYI", this.props)
+    }
+    render() {
     return (
       <div className="wrap">
         <ContactForm />

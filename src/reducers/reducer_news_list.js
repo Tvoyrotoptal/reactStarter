@@ -1,7 +1,7 @@
 /**
  * Created by Bogdan on 8/2/2016.
  */
-import{GET_NEWS_REQUEST,GET_NEWS_SUCCES,UPDATE_NEWS,INIT_DONE,ROOT_URL } from '../constants/newsList'
+import{GET_NEWS_REQUEST,GET_NEWS_SUCCES,UPDATE_NEWS,INIT_DONE,GET_FILTERED_NEWS_SUCCES,ROOT_URL } from '../constants/newsList'
 
 const initialState = {
    news: [
@@ -18,6 +18,8 @@ export default function newsList(state = initialState, action) {
       case GET_NEWS_REQUEST:
            return {...state,fetching:true}
       case GET_NEWS_SUCCES:
+           return {...state, news:(firstInit)?action.payload : action.payload.reverse(),fetching:false,updated:{},firstInit:true}
+      case GET_FILTERED_NEWS_SUCCES:
            return {...state, news:(firstInit)?action.payload : action.payload.reverse(),fetching:false,updated:{},firstInit:true}
       case INIT_DONE:
            return {...state,firstInit:true}
