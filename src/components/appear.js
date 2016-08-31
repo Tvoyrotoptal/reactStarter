@@ -3,7 +3,7 @@
  */
 var React = require('react');
 
-var Expire = React.createClass({
+var AppearAnimation = React.createClass({
   getDefaultProps: function() {
     return {delay: 1000};
   },
@@ -34,16 +34,17 @@ var Expire = React.createClass({
     clearTimeout(this._timer);
   },
   render: function() {
-    return this.state.visible ? <div className={"grid-item no-display " + (this.props.element % 10 > 5 ?
-            'grid-item--width2' : this.props.element % 10 < 2
-            ? 'grid-item--height2' : '')}>
-        {this.props.children}
+    console.log("her")
+    return this.state.visible ?
+    <div className={'grid-item ' + (this.props.element.id % 10 > 5 ?
+            'grid-item--width2 ' : this.props.element.id % 10 < 2 ? 'grid-item--height2 ' : '')+" no-vis"} >
+                {this.props.children}
     </div>
-           : <div className={"grid-item no-display--vis " + (this.props.element % 10 > 5 ?
-            'grid-item--width2' : this.props.element % 10 < 2
-            ? 'grid-item--height2' : '')}>
+           :
+           <div className={'grid-item ' + (this.props.element.id % 10 > 5 ?
+            'grid-item--width2 ' : this.props.element.id % 10 < 2 ? 'grid-item--height2 ' : '')+" no-vis--vis"} >
                 {this.props.children}
     </div>;
   }
 });
-module.exports = Expire;
+module.exports = AppearAnimation;
